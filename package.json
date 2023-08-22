@@ -10,6 +10,7 @@
     "e2e": "playwright test"
   },
   "dependencies": {
+    "@solidjs/meta": "^0.28.6",
     "@solidjs/router": "^0.8.3",
     "firebase": "^10.2.0",
     "solid-js": "^1.7.8",
