@@ -14,6 +14,9 @@ dependencies:
   solid-js:
     specifier: ^1.7.8
     version: 1.7.8
+  valibot:
+    specifier: ^0.12.0
+    version: 0.12.0
 
 devDependencies:
   '@playwright/test':
@@ -5885,6 +5888,10 @@ packages:
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+    dev: false
+
+  /valibot@0.12.0:
+    resolution: {integrity: sha512-EGx/uDUpRa9wB9NkD7fsktc02rvXWlJzDTC/ihbE+NybhzAsMhns2OOdNv2R4BtdGnDvaCEGi/DbgR5RvgCS8A==}
     dev: false
 
   /validate-html-nesting@1.2.2:
