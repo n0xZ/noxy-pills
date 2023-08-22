@@ -1,28 +1,29 @@
-## Usage
+# Noxy - pills
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+Aplicación para el seguimientos de consumo de pastillas.
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+## Context
 
-## Available Scripts
+Noxy pills nació de la necesidad de poder gestionar de manera intuitiva y flexible el seguimiento de consumo de pastillas, sin tener que recurrir a elementos físicos.
+Éste tiene su target en personas que necesitan llevar un control de consumo de pastillas, ya sea por enfermedades crónicas o por tratamientos puntuales.
+También, puede ser utilizado por personas que necesitan llevar un control de consumo de pastillas de manera puntual, como por ejemplo, en el caso de los antibióticos.
 
-In the project directory, you can run:
+## Features
 
-### `npm run dev`
+Las features que ofrece la aplicación son las siguientes:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+- Generar registro de consumo de pastillas
+- Generar recordatorio de consumo de pastillas (por medio de un countdown establecido por el user)(Via Push notifications)
+- Eliminar registro de consumo de pastillas
+- Editar registro de consumo de pastillas
+- Ver registro de consumo de pastillas, ordenado de manera cronológica
+- Ver registro de consumo de pastillas, ordenado por pastilla
+- Definir categorías de aplicación de pastillas (I.E Enfermedades, consumo diario, etc.)
 
-### `npm run build`
+## User Stories
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-Learn more about deploying your application with the [documentations](https://vitejs.dev/guide/static-deploy.html)
+- **404:** Como usuario quiero ver una página 404 cuando navego a una página que no existe para saber que no está disponible.
+- Como usuario quiero poder crear una cuenta para poder acceder a la aplicación.
+- Como usuario quiero poder iniciar sesión para poder acceder a la aplicación.
+- Como usuario quiero poder cerrar sesión para poder salir de la aplicación.
+- Como usuario quiero poder crear un registro de consumo de pastillas para poder llevar un control de consumo.
