@@ -11,6 +11,9 @@ dependencies:
   '@solidjs/router':
     specifier: ^0.8.3
     version: 0.8.3(solid-js@1.7.8)
+  '@tanstack/solid-query':
+    specifier: ^4.4.0
+    version: 4.4.0(solid-js@1.7.8)
   firebase:
     specifier: ^10.2.0
     version: 10.2.0(react-native@0.72.4)
@@ -2619,6 +2622,19 @@ packages:
     peerDependencies:
       solid-js: ^1.5.3
     dependencies:
+      solid-js: 1.7.8
+    dev: false
+
+  /@tanstack/query-core@4.4.0:
+    resolution: {integrity: sha512-YMJ1PWVfnLbQ9GPqPb9yniHKH0XKQgcjYNJuWyw47OWn9tTvvG16Muq3B6aTjKj3ce6cl1imBHoDUIbvK8PqXQ==}
+    dev: false
+
+  /@tanstack/solid-query@4.4.0(solid-js@1.7.8):
+    resolution: {integrity: sha512-+Wyir/Nw6qf08OWYSTo+O6bOiGnXA3UW+zIKovoh+eZd+WPUnKv0nQl3M99fQusqXd7ov2oKO9s5zq7mM+6wyg==}
+    peerDependencies:
+      solid-js: ^1.5.4
+    dependencies:
+      '@tanstack/query-core': 4.4.0
       solid-js: 1.7.8
     dev: false
 
