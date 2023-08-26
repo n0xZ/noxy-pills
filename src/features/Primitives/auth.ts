@@ -1,6 +1,7 @@
 import { useNavigate } from "@solidjs/router";
 import { createMutation } from "@tanstack/solid-query";
 
+
 import { createSignal } from "solid-js";
 import { ValiError, safeParse } from "valibot";
 
@@ -9,22 +10,12 @@ import { CredentialsOutput, credentialsSchema } from "~/utils/valibot";
 
 export const createAuth = () => {
   const [formErrors, setFormErrors] = createSignal<ValiError>({} as ValiError);
-  const {
-    data: signInData,
-    mutate: mutateSignIn,
-    isLoading: isSignInLoading,
-    error: signInError,
-  } = createMutation(signInViaEmail, {
+  const signInMutation = createMutation(signInViaEmail, {
     onError(e: Error) {
       return e.message;
     },
   });
-  const {
-    data: signUpData,
-    mutate: mutateSignUp,
-    isLoading: isSignUpLoading,
-    error: signUpError,
-  } = createMutation(signUpViaEmail, {
+  const signUpMutation = createMutation(signUpViaEmail, {
     onError(e: Error) {
       return e.message;
     },
@@ -58,8 +49,8 @@ This should work
     if (!formResult.success) {
       setFormErrors({ ...formErrors(), formErrors: formResult.error });
     } else {
-      mutateSignIn(formResult.data);
-      if (signInData) navigate("/home");
+      signInMutation.mutate(formResult.data);
+      if (signInMutation.data) navigate("/home");
     }
   };
   const signUp = async (
@@ -77,19 +68,15 @@ This should work
     if (!formResult.success) {
       setFormErrors({ ...formErrors(), formErrors: formResult.error });
     } else {
-      mutateSignUp(formResult.data);
-      if (signUpData) navigate("/home");
+      signUpMutation.mutate(formResult.data);
+      if (signUpMutation.data) navigate("/home");
     }
   };
   return {
-    signIn,
-    isSignInLoading,
-    signInAuthErrors: signInError,
+    signUpMutation,
+    signInMutation,
     containsFormErrors,
     errorFromField,
-    signUp,
-    isSignUpLoading,
-    signUpAuthErrors: signUpError,
-    signUpError,
+    signIn,
   };
 };
