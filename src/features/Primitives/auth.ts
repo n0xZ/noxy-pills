@@ -1,15 +1,17 @@
 import { useNavigate } from "@solidjs/router";
 import { createMutation } from "@tanstack/solid-query";
-
-
-import { createSignal } from "solid-js";
+import { signOut } from "firebase/auth";
+import { createEffect, createSignal } from "solid-js";
 import { ValiError, safeParse } from "valibot";
+import {useAuth} from 'solid-firebase'
+import { auth } from "~/lib/firebase";
 
 import { signInViaEmail, signUpViaEmail } from "~/services/auth";
 import { CredentialsOutput, credentialsSchema } from "~/utils/valibot";
 
 export const createAuth = () => {
   const [formErrors, setFormErrors] = createSignal<ValiError>({} as ValiError);
+  const {data} = useAuth(auth)
   const signInMutation = createMutation(signInViaEmail, {
     onError(e: Error) {
       return e.message;
@@ -50,9 +52,9 @@ This should work
       setFormErrors({ ...formErrors(), formErrors: formResult.error });
     } else {
       signInMutation.mutate(formResult.data);
-      if (signInMutation.data) navigate("/home");
     }
   };
+  const logout = async () => await signOut(auth);
   const signUp = async (
     e: Event & { submitter: HTMLElement } & {
       currentTarget: HTMLFormElement;
@@ -69,14 +71,20 @@ This should work
       setFormErrors({ ...formErrors(), formErrors: formResult.error });
     } else {
       signUpMutation.mutate(formResult.data);
-      if (signUpMutation.data) navigate("/home");
     }
   };
+  createEffect(() => {
+    if (signInMutation.isSuccess || signUpMutation.isSuccess || data) {
+      navigate("/home");
+    }
+  });
   return {
     signUpMutation,
     signInMutation,
     containsFormErrors,
     errorFromField,
     signIn,
+    signUp,
+    logout,
   };
 };
