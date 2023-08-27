@@ -17,6 +17,9 @@ dependencies:
   firebase:
     specifier: ^10.2.0
     version: 10.2.0(react-native@0.72.4)
+  solid-firebase:
+    specifier: ^0.3.0
+    version: 0.3.0(firebase@10.2.0)(solid-js@1.7.8)
   solid-js:
     specifier: ^1.7.8
     version: 1.7.8
@@ -5568,6 +5571,16 @@ packages:
       ansi-styles: 3.2.1
       astral-regex: 1.0.0
       is-fullwidth-code-point: 2.0.0
+    dev: false
+
+  /solid-firebase@0.3.0(firebase@10.2.0)(solid-js@1.7.8):
+    resolution: {integrity: sha512-rpu1ltpNZV8L92naF7wMuwQKJC6ohg11+z2w+VohYf6aqEIZardmgIhSSLsyL8daZJ2wq6WO+n3bQMaXERZNFA==}
+    peerDependencies:
+      firebase: '>=9.0.0'
+      solid-js: '>=1.6.0'
+    dependencies:
+      firebase: 10.2.0(react-native@0.72.4)
+      solid-js: 1.7.8
     dev: false
 
   /solid-js@1.7.8:
