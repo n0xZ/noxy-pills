@@ -61,8 +61,8 @@ export default function Login() {
 
           <Button
             class={`px-8 py-4 ${
-              signInMutation.isLoading ? "bg-teal-600" : "bg-teal-500"
-            } font-bold w-full  c-light-500 rounded-lg max-w-2xl`}
+              signInMutation.isLoading ? "bg-teal-900" : "bg-teal-800"
+            } font-bold w-full  c-white font-medium rounded-lg max-w-2xl`}
             type="submit"
             data-test-id="submit-login"
             disabled={signInMutation.isLoading}
