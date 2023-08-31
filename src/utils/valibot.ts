@@ -19,7 +19,10 @@ export const pillSchema = object({
 	description: string(),
 	userId: string(),
 	duration: number(),
+	frequency: number(),
 	createdAt: any(),
 });
 export type PillsOutput = Output<typeof pillSchema>;
 export type CredentialsOutput = Output<typeof credentialsSchema>;
+
+export type Fields = PillsOutput & CredentialsOutput;

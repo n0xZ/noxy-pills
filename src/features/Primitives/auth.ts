@@ -7,7 +7,7 @@ import { useAuth } from "solid-firebase";
 import { auth } from "~/lib/firebase";
 
 import { signInViaEmail, signUpViaEmail } from "~/services/auth";
-import { CredentialsOutput, credentialsSchema } from "~/utils/valibot";
+import { CredentialsOutput, Fields, credentialsSchema } from "~/utils/valibot";
 
 export const createAuth = () => {
 	const [formErrors, setFormErrors] = createSignal<ValiError>({} as ValiError);
@@ -25,14 +25,12 @@ export const createAuth = () => {
 	});
 	const navigate = useNavigate();
 
-	/**
-This should work
- */
-	const containsFormErrors = (key: keyof CredentialsOutput) =>
+	// Returns an boolean if an errors exists for a given field (key)
+	const containsFormErrors = (key: keyof Fields) =>
 		formErrors().issues &&
 		formErrors().issues.some((i) => i.path?.[0].key === key);
 
-	const errorFromField = (key: keyof CredentialsOutput) => {
+	const errorFromField = (key: keyof Fields) => {
 		const error = formErrors().issues?.find((i) => i.path?.[0].key === key);
 		return error?.message;
 	};
