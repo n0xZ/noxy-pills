@@ -12,16 +12,16 @@ import { firebase } from "./lib/firebase";
 const root = document.getElementById("root");
 const client = new QueryClient();
 render(
-  () => (
-    <FirebaseProvider app={firebase}>
-      <QueryClientProvider client={client}>
-        <MetaProvider>
-          <Router>
-            <App />
-          </Router>
-        </MetaProvider>
-      </QueryClientProvider>
-    </FirebaseProvider>
-  ),
-  root!
+	() => (
+		<QueryClientProvider client={client}>
+			<FirebaseProvider app={firebase}>
+				<MetaProvider>
+					<Router>
+						<App />
+					</Router>
+				</MetaProvider>
+			</FirebaseProvider>
+		</QueryClientProvider>
+	),
+	root!,
 );
