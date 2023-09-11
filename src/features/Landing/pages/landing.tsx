@@ -8,7 +8,7 @@ export default function Landing() {
 		<>
 			<Title>Bienvenido@a Noxy - pills!</Title>
 			<header class="p-5 border-b-2 border-light-500">
-				<nav class="flex flex-row items-center justify-between container mx-auto max-w-5xl">
+				<nav class="flex flex-row items-center justify-between container mx-auto max-w-3xl">
 					<Link href="/">Pills</Link>
 					<ul class="flex flex-row items-center gap-5">
 						<li>
@@ -20,7 +20,7 @@ export default function Landing() {
 					</ul>
 				</nav>
 			</header>
-			<main class="h-screen flex flex-col justify-center gap-2 container mx-auto max-w-5xl">
+			<main class="h-screen flex flex-col justify-center gap-2 container mx-auto max-w-3xl">
 				<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center">
 					Gestionar tus pastillas, nunca fue tan fácil{" "}
 					<span class="c-teal-600">como ahora.</span>
