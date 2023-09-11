@@ -7,7 +7,7 @@ import { useAuth } from "solid-firebase";
 import { auth } from "~/lib/firebase";
 
 import { signInViaEmail, signUpViaEmail } from "~/services/auth";
-import { CredentialsOutput, Fields, credentialsSchema } from "~/utils/valibot";
+import { Fields, credentialsSchema } from "~/utils/valibot";
 
 export const createAuth = () => {
 	const [formErrors, setFormErrors] = createSignal<ValiError>({} as ValiError);

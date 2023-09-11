@@ -1,15 +1,4 @@
-import {
-	object,
-	string,
-	email,
-	Output,
-	array,
-	number,
-	date,
-	parse,
-	any,
-	optional,
-} from "valibot";
+import { object, string, email, Output, number, any, optional } from "valibot";
 
 export const credentialsSchema = object({
 	email: string([email("Campo requerido")]),
