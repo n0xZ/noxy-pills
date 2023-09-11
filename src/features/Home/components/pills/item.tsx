@@ -2,7 +2,7 @@ import { createMutation, useQueryClient } from "@tanstack/solid-query";
 
 import { Show } from "solid-js";
 
-import { createPillRemainingTime } from "~/features/Primitives/pillRemainingTime";
+import { createPillDate } from "~/features/Primitives/pillDate";
 import { deletePill } from "~/services/pills";
 import { Button } from "~/ui/button";
 
@@ -21,7 +21,7 @@ function SpinnerIcon() {
 			viewBox="0 0 24 24"
 			class="h-5 w-5"
 		>
-			<title>Spinner icon</title>
+			<title>Icono de Spinner</title>
 			<path
 				fill="currentColor"
 				d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"
@@ -44,7 +44,7 @@ function DeleteIcon() {
 			width="32"
 			height="32"
 			viewBox="0 0 1024 1024"
-			class="w-9 h-9"
+			class=" h-10 w-10 c-light-50"
 		>
 			<title>Delete pill icon</title>
 			<path
@@ -64,8 +64,9 @@ function DeletePill(props: { pilId: string }) {
 	};
 	return (
 		<Button
-			class=" h-9 w-9 bg-light-500 hover:opacity-60"
+			class="h-10 w-10 bg-dark-900 rounded-md  hover:opacity-80"
 			type="button"
+			title="Eliminar pastilla"
 			onClick={deleteSelectedOne}
 		>
 			<Show when={deletePillMut.isLoading} fallback={<DeleteIcon />}>
@@ -75,12 +76,12 @@ function DeletePill(props: { pilId: string }) {
 	);
 }
 export function PillItem(props: Props) {
-	const { remaining } = createPillRemainingTime(
+	const { remainingTime, pillDateParsed, pillTime } = createPillDate(
 		props.pill.createdAt,
 		props.pill.frequency,
 	);
 	return (
-		<article class="flex flex-col justify-center gap-2  p-3 w-full border-b-2 ">
+		<article class="flex flex-col justify-center space-y-1  px-3 py-2 w-full border-b-2 ">
 			<aside class="flex flex-row items-center justify-between">
 				<h2 class="font-bold">
 					{props.pill.name} (Cada {props.pill.frequency} horas)
@@ -88,8 +89,14 @@ export function PillItem(props: Props) {
 				<DeletePill pilId={props.pill.id ?? ""} />
 			</aside>
 			<small class="c-gray-500">{props.pill.description}</small>
-			<Show when={remaining !== 0}>
-				<p>Próxima aplicación: En {remaining}hs</p>
+
+			<Show when={remainingTime !== 0}>
+				<span class="flex xl:flex-row flex-col items-center justify-between ">
+					<p>Próxima dosis: En {remainingTime}hs</p>
+					<small class="c-gray-500">
+						Agregado el día {pillDateParsed} a las {pillTime}hs
+					</small>
+				</span>
 			</Show>
 		</article>
 	);
