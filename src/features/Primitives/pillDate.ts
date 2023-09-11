@@ -1,6 +1,6 @@
 import { defineRemainingTime } from "~/utils/remaining-time";
 
-export const createPillRemainingTime = (
+export const createPillDate = (
 	pillCreatedAtDate: { seconds: number; nanoseconds: number },
 	pillFrequency: number,
 ) => {
@@ -10,6 +10,8 @@ export const createPillRemainingTime = (
 	const actualDate = new Date();
 	const nextDose = (pillDate.getHours() + pillFrequency) % 24;
 	const actualHour = actualDate.getHours();
-	const remaining = defineRemainingTime(actualHour, nextDose);
-	return { remaining };
+	const remainingTime = defineRemainingTime(actualHour, nextDose);
+	const pillDateParsed = pillDate.toISOString().split("T")[0];
+	const pillTime = +pillDate.toISOString().split("T")[1].split(":")[0];
+	return { remainingTime, pillDateParsed, pillTime };
 };
