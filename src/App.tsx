@@ -1,5 +1,5 @@
 import { lazy } from "solid-js";
-import { Routes, Route } from "@solidjs/router";
+import { Routes, Route, Navigate } from "@solidjs/router";
 import { Toaster } from "solid-toast";
 const Home = lazy(() => import("./features/Landing/pages/landing"));
 const Login = lazy(() => import("./features/Login/pages/login"));
@@ -18,6 +18,7 @@ function App() {
 					<Route path="/" component={HomeGeneral} />
 					<Route path="/pills/create" component={CreatePills} />
 				</Route>
+				<Route path="/*" element={<Navigate href="/" />} />
 			</Routes>
 			<Toaster />
 		</>
