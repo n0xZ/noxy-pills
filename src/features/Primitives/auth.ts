@@ -12,7 +12,7 @@ import { Fields, credentialsSchema } from "~/utils/valibot";
 export const createAuth = () => {
 	const [formErrors, setFormErrors] = createSignal<ValiError>({} as ValiError);
 	const location = useLocation();
-	const { data } = useAuth(auth);
+	const { data, loading } = useAuth(auth);
 	const signInMutation = createMutation(signInViaEmail, {
 		onError(e: Error) {
 			return e.message;
@@ -78,7 +78,7 @@ export const createAuth = () => {
 	createEffect(() => {
 		const triggerRedirectBasedOnUserStatus = async () => {
 			if (location.pathname.includes("/home")) {
-				if (!data) {
+				if (!data && !loading) {
 					navigate("/");
 				}
 			}
@@ -86,7 +86,7 @@ export const createAuth = () => {
 				location.pathname.includes("/login") ||
 				location.pathname.includes("/register")
 			) {
-				if (signInMutation.data || signUpMutation.data || data) {
+				if (signInMutation.data || signUpMutation.data || (data && !loading)) {
 					navigate("/home");
 				}
 			}
