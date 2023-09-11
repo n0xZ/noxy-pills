@@ -27,6 +27,8 @@
     "typescript": "^5.0.2",
     "unocss": "^0.55.1",
     "vite": "^4.4.5",
-    "vite-plugin-solid": "^2.7.0"
+    "vite-plugin-pwa": "^0.16.5",
+    "vite-plugin-solid": "^2.7.0",
+    "workbox-core": "^7.0.0"
   }
 }
