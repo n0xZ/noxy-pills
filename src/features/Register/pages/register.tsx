@@ -46,7 +46,7 @@ export default function Register() {
 			<article class="grid place-items-center  w-full h-full">
 				<form
 					onSubmit={signUp}
-					class="  xl:p-0 p-3 flex flex-col items-center justify-center items-center w-full   max-w-5xl container mx-auto space-y-5  "
+					class="  xl:p-0 p-3 flex flex-col items-center justify-center items-center w-full   max-w-3xl container mx-auto space-y-5  "
 				>
 					<h2 class="text-center xl:text-3xl text-lg font-bold mb-3">
 						Crea tu nueva cuenta en Pills!

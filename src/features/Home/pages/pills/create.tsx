@@ -83,95 +83,99 @@ export default function CreatePillsForm() {
 		}
 	};
 	return (
-		<main class="h-screen grid place-items-center w-full">
+		<section class=" min-h-screen h-full grid place-items-center w-full">
 			<Title>Pills - Agregar nueva pastilla</Title>
-			<form
-				class="container mx-auto max-w-3xl flex flex-col justify-center gap-2 w-full"
-				onSubmit={onSubmit}
-			>
-				<h2 class="text-center font-bold text-3xl">Crear nueva pastilla!</h2>
-				<Paragraph class=" mb-3 text-md opacity-80">
-					Agrega tu pastilla a controlar completando este formulario.
-				</Paragraph>
-				<FormField>
-					<Label>Nombre de la pastilla</Label>
-					<Input
-						type="text"
-						name="name"
-						disabled={createPillMut.isLoading}
-						required
-						placeholder="Cafiaspirina"
-						data-test-id="name-input"
-					/>
-					<span class="text-xs h-4 text-red-500" data-test-id="auth-errors">
-						<Show when={containsFormErrors("name")}>
-							{errorFromField("name")}
-						</Show>
-					</span>
-				</FormField>
-				<FormField>
-					<Label>Descripción de la pastilla</Label>
-					<Input
-						type="text"
-						name="description"
-						disabled={createPillMut.isLoading}
-						required
-						placeholder="Sirve para el dolor de cabeza"
-						data-test-id="description-input"
-					/>
-					<span class="text-xs h-4 text-red-500" data-test-id="auth-errors">
-						<Show when={containsFormErrors("description")}>
-							{errorFromField("description")}
-						</Show>
-					</span>
-				</FormField>
-				<FormField>
-					<Label>Frecuencia de la aplicación de la pastilla (horas)</Label>
-					<Input
-						autocomplete="off"
-						type="number"
-						name="frequency"
-						disabled={createPillMut.isLoading}
-						required
-						placeholder="3"
-						data-test-id="frequency-input"
-					/>
-					<span class="text-xs h-4 text-red-500" data-test-id="auth-errors">
-						<Show when={containsFormErrors("frequency")}>
-							{errorFromField("frequency")}
-						</Show>
-					</span>
-				</FormField>
-				<FormField>
-					<Label>Duración del tratamiento (en días)</Label>
-					<Input
-						autocomplete="off"
-						type="number"
-						name="duration"
-						disabled={createPillMut.isLoading}
-						required
-						placeholder="11"
-						data-test-id="duration-input"
-					/>
-					<span class="text-xs h-4 text-red-500" data-test-id="auth-errors">
-						<Show when={containsFormErrors("duration")}>
-							{errorFromField("duration")}
-						</Show>
-					</span>
-				</FormField>
-				<Button
-					type="submit"
-					disabled={createPillMut.isLoading}
-					class="flex flex-row items-center gap-2"
+			<article class="w-full max-w-3xl h-2xl bg-light-100 grid place-items-center rounded-md shadow-md">
+				<form
+					class=" container mx-auto max-w-3xl flex flex-col justify-center gap-2   p-4 bg-light-100 w-full"
+					onSubmit={onSubmit}
 				>
-					<Show when={createPillMut.isLoading} fallback="Agregar pastilla">
-						<>
-							<SpinnerIcon />
-							<span>Agregando...</span>
-						</>
-					</Show>
-				</Button>
-			</form>
-		</main>
+					<h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 text-center">
+						Crear nueva pastilla!
+					</h2>
+					<Paragraph class=" mb-3 text-md opacity-80 tex">
+						Agrega tu pastilla a controlar completando este formulario.
+					</Paragraph>
+					<FormField>
+						<Label>Nombre de la pastilla</Label>
+						<Input
+							type="text"
+							name="name"
+							disabled={createPillMut.isLoading}
+							required
+							placeholder="Cafiaspirina"
+							data-test-id="name-input"
+						/>
+						<span class="text-xs h-4 text-red-500" data-test-id="auth-errors">
+							<Show when={containsFormErrors("name")}>
+								{errorFromField("name")}
+							</Show>
+						</span>
+					</FormField>
+					<FormField>
+						<Label>Descripción de la pastilla</Label>
+						<Input
+							type="text"
+							name="description"
+							disabled={createPillMut.isLoading}
+							required
+							placeholder="Sirve para el dolor de cabeza"
+							data-test-id="description-input"
+						/>
+						<span class="text-xs h-4 text-red-500" data-test-id="auth-errors">
+							<Show when={containsFormErrors("description")}>
+								{errorFromField("description")}
+							</Show>
+						</span>
+					</FormField>
+					<FormField>
+						<Label>Frecuencia de la aplicación de la pastilla (horas)</Label>
+						<Input
+							autocomplete="off"
+							type="number"
+							name="frequency"
+							disabled={createPillMut.isLoading}
+							required
+							placeholder="3"
+							data-test-id="frequency-input"
+						/>
+						<span class="text-xs h-4 text-red-500" data-test-id="auth-errors">
+							<Show when={containsFormErrors("frequency")}>
+								{errorFromField("frequency")}
+							</Show>
+						</span>
+					</FormField>
+					<FormField>
+						<Label>Duración del tratamiento (en días)</Label>
+						<Input
+							autocomplete="off"
+							type="number"
+							name="duration"
+							disabled={createPillMut.isLoading}
+							required
+							placeholder="11"
+							data-test-id="duration-input"
+						/>
+						<span class="text-xs h-4 text-red-500" data-test-id="auth-errors">
+							<Show when={containsFormErrors("duration")}>
+								{errorFromField("duration")}
+							</Show>
+						</span>
+					</FormField>
+					<Button
+						type="submit"
+						disabled={createPillMut.isLoading}
+						class="flex flex-row items-center gap-2 bg-dark-900 c-white hover:opacity-90"
+					>
+						<Show when={createPillMut.isLoading} fallback="Agregar pastilla">
+							<>
+								<SpinnerIcon />
+								<span>Agregando...</span>
+							</>
+						</Show>
+					</Button>
+				</form>
+			</article>
+		</section>
 	);
 }

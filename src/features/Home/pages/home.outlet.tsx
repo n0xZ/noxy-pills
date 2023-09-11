@@ -6,26 +6,31 @@ export default function HomeOutlet() {
 
 	return (
 		<>
-			<header class="p-5 border-b-2 border-light-400">
-				<nav class="flex flex-row items-center justify-between container mx-auto max-w-5xl">
-					<NavLink activeClass="c-teal-600" href="/home">
-						Home
+			<header class="p-5 border-b-2 border-light-400 ">
+				<nav class="flex flex-row items-center justify-between container mx-auto max-w-3xl">
+					<NavLink inactiveClass="opacity-60" href="/home">
+						Pills!
 					</NavLink>
 					<ul class="flex flex-row items-center gap-5">
 						<li>
-							<NavLink href="/home/pills/create" activeClass="c-teal-600">
+							<NavLink href="/home/pills/create" inactiveClass="opacity-60">
 								Agregar nueva pastilla
 							</NavLink>
 						</li>
 						<li>
-							<Button class="c-black font-bold" onClick={logout}>
+							<Button
+								class="bg-dark-700 c-white hover:opacity-80 font-bold"
+								onClick={logout}
+							>
 								Cerrar sesión
 							</Button>
 						</li>
 					</ul>
 				</nav>
 			</header>
-			<Outlet />
+			<main class="bg-zinc-100 min-h-screen h-full pt-3">
+				<Outlet />
+			</main>
 		</>
 	);
 }

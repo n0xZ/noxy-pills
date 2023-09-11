@@ -14,19 +14,19 @@ export default function Home() {
 	);
 
 	return (
-		<main class="container mx-auto max-w-5xl border-2 border-light-400 min-h-screen h-full rounded-md mt-5">
+		<section class="max-w-3xl  container mx-auto border-2 min-h-screen bg-light-100 h-full w-full  rounded-md  ">
 			<Title>Pills - Home</Title>
-			<h2 class="text-center font-bold text-3xl mt-3 mb-3">
+			<h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 text-center text-center pt-4">
 				Lista de pastillas actuales
 			</h2>
 			<Switch>
 				<Match when={q.isLoading}>
 					<p>Cargando...</p>
 				</Match>
-				<Match when={q.isSuccess && q.data}>
-					<PillList pills={q.data!} />
+				<Match when={q.isSuccess && q.data && q.data.length !== 0}>
+					<PillList pills={q.data ?? []} />
 				</Match>
 			</Switch>
-		</main>
+		</section>
 	);
 }
