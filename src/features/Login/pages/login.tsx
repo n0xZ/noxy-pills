@@ -42,11 +42,11 @@ export default function Login() {
 
 	return (
 		<main class="h-screen w-full">
-			<Title>Solyx - Iniciar sesión</Title>
+			<Title>Pills - Iniciar sesión</Title>
 			<article class="grid place-items-center  w-full h-full">
 				<form
 					onSubmit={signIn}
-					class="  xl:p-0 p-3 flex flex-col items-center justify-center items-center w-full  max-w-5xl container mx-auto space-y-5  "
+					class="  xl:p-0 p-3 flex flex-col items-center justify-center items-center w-full  max-w-4xl container mx-auto space-y-5  "
 				>
 					<h2 class="text-center xl:text-3xl text-lg font-bold mb-3">
 						Inicia sesión en Pills!
@@ -88,7 +88,7 @@ export default function Login() {
 					<Button
 						class={`px-8 py-4 ${
 							signInMutation.isLoading ? "bg-teal-400" : "bg-teal-500"
-						} font-bold w-full  c-white font-bold rounded-lg max-w-3xl flex flex-row items-center gap-2`}
+						} font-bold w-full  c-white font-bold rounded-lg max-w-4xl flex flex-row items-center gap-2`}
 						type="submit"
 						data-test-id="submit-login"
 						disabled={signInMutation.isLoading}
