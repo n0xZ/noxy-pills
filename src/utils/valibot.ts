@@ -8,6 +8,7 @@ import {
 	date,
 	parse,
 	any,
+	optional,
 } from "valibot";
 
 export const credentialsSchema = object({
@@ -15,6 +16,7 @@ export const credentialsSchema = object({
 	password: string(),
 });
 export const pillSchema = object({
+	id: optional(string()),
 	name: string(),
 	description: string(),
 	userId: string(),

@@ -1,10 +1,10 @@
 import {
 	addDoc,
 	collection,
+	deleteDoc,
 	doc,
 	getDocs,
 	query,
-	setDoc,
 	where,
 } from "firebase/firestore";
 import { parse } from "valibot";
@@ -20,7 +20,10 @@ export const getPillsByUserId = async (userId: string) => {
 		);
 		const pillsCollection = await getDocs(pillsQuery);
 		const pillsDocs = pillsCollection.docs;
-		const pillsData = pillsDocs.map((doc) => parse(pillSchema, doc.data()));
+
+		const pillsData = pillsDocs.map((doc) =>
+			parse(pillSchema, { ...doc.data(), id: doc.id }),
+		);
 		return pillsData;
 	} catch (e) {
 		if (e instanceof Error) {
@@ -52,4 +55,10 @@ export const createPill = async ({
 			throw new Error(e.message);
 		}
 	}
+};
+
+export const deletePill = async (id: string) => {
+	const pillDoc = doc(firestore, "pills", id);
+	const data = await deleteDoc(pillDoc);
+	return data;
 };
