@@ -1,17 +1,34 @@
-import { NavLink, Outlet } from "@solidjs/router";
-import { createAuth } from "~/features/Primitives/auth";
-import { Button } from "~/ui/button";
-export default function HomeOutlet() {
-	const { logout } = createAuth();
+import { NavLink, Outlet, useLocation, useNavigate } from "@solidjs/router";
 
+import { Show, createEffect } from "solid-js";
+import { createAuth } from "~/features/Primitives/auth";
+
+import { createUser } from "~/features/Primitives/user";
+
+import { Button } from "~/ui/button";
+import { HomeMenu } from "../components/home/menu";
+export default function HomeOutlet() {
+	const { user } = createUser();
+	const { logout } = createAuth();
+	const navigate = useNavigate();
+	const location = useLocation();
+
+	createEffect(() => {
+		if (location.pathname.includes("/home")) {
+			if (!user.data && !user.loading) {
+				navigate("/");
+			}
+		}
+	});
 	return (
 		<>
-			<header class="p-5 border-b-2 border-light-400 ">
+			<Show when={!user.loading}>{user.data?.displayName}</Show>
+			<header class="p-5 border-b-2 border-light-400  bg-light-100">
 				<nav class="flex flex-row items-center justify-between container mx-auto max-w-3xl">
 					<NavLink inactiveClass="opacity-60" href="/home">
-						Pills!
+						Home!
 					</NavLink>
-					<ul class="flex flex-row items-center gap-5">
+					<ul class=" flex-row items-center gap-5 hidden xl:flex ">
 						<li>
 							<NavLink href="/home/pills/create" inactiveClass="opacity-60">
 								Agregar nueva pastilla
@@ -26,6 +43,7 @@ export default function HomeOutlet() {
 							</Button>
 						</li>
 					</ul>
+					<HomeMenu />
 				</nav>
 			</header>
 			<main class="bg-zinc-100 min-h-screen h-full pt-3">
