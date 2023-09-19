@@ -1,18 +1,19 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createSignal, onCleanup } from "solid-js";
 import { useNavigate, useLocation } from "@solidjs/router";
 import { createMutation } from "@tanstack/solid-query";
 import { signOut } from "firebase/auth";
 import { ValiError, safeParse } from "valibot";
-import { useAuth } from "solid-firebase";
+
 import { auth } from "~/lib/firebase";
 
 import { signInViaEmail, signUpViaEmail } from "~/services/auth";
 import { Fields, credentialsSchema } from "~/utils/valibot";
+import { createUser } from "./user";
 
 export const createAuth = () => {
 	const [formErrors, setFormErrors] = createSignal<ValiError>({} as ValiError);
 	const location = useLocation();
-	const { data, loading } = useAuth(auth);
+	const { user } = createUser();
 	const signInMutation = createMutation(signInViaEmail, {
 		onError(e: Error) {
 			return e.message;
@@ -23,6 +24,7 @@ export const createAuth = () => {
 			return e.message;
 		},
 	});
+
 	const navigate = useNavigate();
 
 	// Returns an boolean if an errors exists for a given field (key)
@@ -77,16 +79,15 @@ export const createAuth = () => {
 	};
 	createEffect(() => {
 		const triggerRedirectBasedOnUserStatus = async () => {
-			if (location.pathname.includes("/home")) {
-				if (!data && !loading) {
-					navigate("/");
-				}
-			}
 			if (
 				location.pathname.includes("/login") ||
 				location.pathname.includes("/register")
 			) {
-				if (signInMutation.data || signUpMutation.data || (data && !loading)) {
+				if (
+					signInMutation.data ||
+					signUpMutation.data ||
+					(user.data && !user.loading)
+				) {
 					navigate("/home");
 				}
 			}
